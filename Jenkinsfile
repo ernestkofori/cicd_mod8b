@@ -37,12 +37,13 @@ pipeline {
         }
         stage('Deploy') {
             input {
-                parameters {
-                choice(name: 'VERSION', choices: ['1.0.1', '1.0.2'], description: 'Version to deploy')
-                }
                 message "Deploy version is ${params.VERSION}?"
                 ok "Deploy"
             }
+            parameters {
+                choice(name: 'VERSION', choices: ['1.0.1', '1.0.2'], description: 'Version to deploy')
+                }
+                
             steps {
                 script {
                     gv.deployApp()
