@@ -1,7 +1,7 @@
 dev buildApp() {
-    when {
-        expression { params.RUN_TESTS == true }
-        }
+    // when {
+    //     expression { params.RUN_TESTS == true }
+    //     }
     echo 'Building...'
     // Add build steps here
 }
