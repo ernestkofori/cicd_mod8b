@@ -1,4 +1,4 @@
-def gv = load 'script.groovy'
+def gv
 pipeline {
     agent any
     parameters {
@@ -6,6 +6,15 @@ pipeline {
         choice(name: 'DEPLOY_ENVIRONMENT', choices: ['development', 'staging', 'production'], description: 'Deployment environment')
     }
     stages {
+        stage('init') {
+
+            steps {
+                script {
+                    gv = load 'script.groovy'
+                }
+            }
+        }
+
         stage('Build') {
 
             steps {
