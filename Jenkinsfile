@@ -1,20 +1,19 @@
-// def gv
-def gv = load 'script.groovy'
+def gv
 pipeline {
     agent any
     parameters {
         booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Whether to run tests')
         choice(name: 'DEPLOY_ENVIRONMENT', choices: ['development', 'staging', 'production'], description: 'Deployment environment')
     }
-    // stages {
-    //     stage('init') {
+    stages {
+        stage('init') {
 
-    //         steps {
-    //             script {
-    //                 gv = load 'script.groovy'
-    //             }
-    //         }
-    //     }
+            steps {
+                script {
+                    gv = load 'script.groovy'
+                }
+            }
+        }
 
         stage('Build') {
             steps {
@@ -54,3 +53,4 @@ pipeline {
     //         echo 'This will run only if the pipeline fails.'
     //     }
     // }
+}
