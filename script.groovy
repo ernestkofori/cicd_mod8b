@@ -9,7 +9,7 @@ def testApp() {
 }
 
 def deployApp() {
-    echo "Deploying to ${params.DEPLOY_ENVIRONMENT} environment"
+    echo "Deploying version ${params.VERSION} to ${params.DEPLOY_ENVIRONMENT} environment"
     echo 'Deploying...'
     // Add deploy steps here
 }
