@@ -1,5 +1,5 @@
-// def gv
-def gv = load 'script.groovy'
+def gv
+// def gv = load 'script.groovy'
 pipeline {
     agent any
     parameters {
@@ -8,14 +8,14 @@ pipeline {
         choice(name: 'VERSION', choices: ['1.0.1', '1.0.2'], description: 'Version to deploy')
     }
     stages {
-        // stage('init') {
+        stage('init') {
 
-        //     steps {
-        //         script {
-        //             gv = load 'script.groovy'
-        //         }
-        //     }
-        // }
+            steps {
+                script {
+                    gv = load 'script.groovy'
+                }
+            }
+        }
 
         stage('Build') { 
             steps {
