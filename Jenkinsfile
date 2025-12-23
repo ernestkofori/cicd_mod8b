@@ -1,3 +1,4 @@
+def gv = load 'script.groovy'
 pipeline {
     agent any
     parameters {
@@ -6,26 +7,26 @@ pipeline {
     }
     stages {
         stage('Build') {
-            when {
-                expression { params.RUN_TESTS == true }
-            }
+
             steps {
-                echo 'Building...'
-                // Add build steps here
+                script {
+                    gv.buildApp()
+                }
             }
 
         }
         stage('Test') {
             steps {
-                echo 'Testing...'
-                // Add test steps here
+                script {
+                    gv.testApp()
+                }
             }
         }
         stage('Deploy') {
             steps {
-                echo "Deploying to ${params.DEPLOY_ENVIRONMENT} environment"
-                echo 'Deploying...'
-                // Add deploy steps here
+                script {
+                    gv.deployApp()
+                }
             }
         }
     }
